@@ -8,6 +8,6 @@ import org.springframework.stereotype.Component
 class EmployeeMapper {
 
     fun map(employeeRequest: EmployeeRequest): Employee {
-        return Employee("1", "Johnny", "Boy")
+        return Employee("3", "Johnny", "Boy")
     }
 }

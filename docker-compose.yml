@@ -1,17 +1,21 @@
 version: '3.8'
 
 services:
-  postgresdb:
-    image: postgres:14.1-alpine
-    restart: always
-    environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-    ports:
-      - "5432:5432"
-
-  my-web-app:
-    build: .
-    ports:
-      - "5000:5000"
+  backend:
     depends_on:
       - postgresdb
+    build: .
+    ports:
+      - "5000:8080"
+
+  postgresdb:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+
+volumes:
+  dbdata:
